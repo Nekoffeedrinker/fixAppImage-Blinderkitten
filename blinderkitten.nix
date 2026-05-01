@@ -16,6 +16,7 @@ in
         mesa # libGL.so.1
         libglvnd # tambien libGL.so.1
         curlWithGnuTls # libcurl-gnutls.so.4
+        avahi # libavahi-common.so.3
       ];
 
     runScript = ''
