@@ -1,5 +1,5 @@
 {pkgs ? import <nixpkgs> {}}:
-pkgs.buildFHSUserEnv {
+pkgs.buildFHSEnv {
   name = "blinderkitten-env";
 
   targetPkgs = pkgs:
