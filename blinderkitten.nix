@@ -24,6 +24,6 @@ in
     extraOutputsToInstall = ["lib"];
 
     runScript = ''
-      ./squashfs-root/AppRun
+      bash -c "LD_PRELOAD=${curl}/lib/libcurl-gnutls.so.4 ./squashfs-root/AppRun"
     '';
   }
