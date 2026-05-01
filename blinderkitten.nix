@@ -16,7 +16,5 @@ pkgs.buildFHSEnv {
       curlWithGnuTls # libcurl-gnutls.so.4
     ];
 
-  runScript = ''
-    bash -c "export LD_LIBRARY_PATH=${pkgs.curlWithGnuTls}/lib:\$LD_LIBRARY_PATH; ./squashfs-root/AppRun"
-  '';
+  runScript = "bash";
 }
