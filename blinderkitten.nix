@@ -28,7 +28,7 @@ in
     runScript = ''
       bash -c '
         export LD_LIBRARY_PATH=${curl}/lib:$LD_LIBRARY_PATH
-        exec ./squashfs-root/AppRun
+        exec ./squashfs-root/AppRun 2>/dev/null
       '
     '';
   }
