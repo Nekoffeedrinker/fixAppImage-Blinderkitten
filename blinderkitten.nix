@@ -24,6 +24,7 @@ in
 
         # Usarlo sin extraer
         appimage-run
+        squashfsTools
       ]);
 
     extraOutputsToInstall = ["lib"];
@@ -33,13 +34,8 @@ in
         export LD_LIBRARY_PATH=${curl}/lib:$LD_LIBRARY_PATH
         APPIMAGE="$1"
         EXTRACT_DIR="$(dirname "$APPIMAGE")/squashfs-root"
-        echo "APPIMAGE: $APPIMAGE"
-        echo "EXTRACT_DIR: $EXTRACT_DIR"
-        echo "Existe: $(ls -la $EXTRACT_DIR 2>&1)"
         if [ ! -d "$EXTRACT_DIR" ]; then
-          echo "Extrayendo..."
-          "$APPIMAGE" --appimage-extract
-          echo "Código de salida: $?"
+          unsquashfs -d "$EXTRACT_DIR" "$APPIMAGE"
         fi
         exec "$EXTRACT_DIR/AppRun" 2>/dev/null
       ' -- "$@"
