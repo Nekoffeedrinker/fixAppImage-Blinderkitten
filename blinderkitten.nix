@@ -1,4 +1,7 @@
 {pkgs ? import <nixpkgs> {}}:
+let
+  curl = pkgs.curlWithGnuTls.out;
+in
 pkgs.buildFHSEnv {
   name = "blinderkitten";
 
@@ -16,5 +19,7 @@ pkgs.buildFHSEnv {
       curlWithGnuTls # libcurl-gnutls.so.4
     ];
 
-  runScript = "bash";
+  runScript = ''
+    bash -c "export LD_LIBRARY_PATH=${curl}/lib:\$LD_LIBRARY_PATH; ./squashfs-root/AppRun"
+  '';
 }
