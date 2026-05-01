@@ -4,7 +4,7 @@ pkgs.buildFHSEnv {
 
   targetPkgs = pkgs:
     with pkgs; [
-      curlWithGnuTls
+      curlWithGnuTls.out
       glib
       zlib
       openssl
