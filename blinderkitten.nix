@@ -13,9 +13,11 @@ pkgs.buildFHSEnv {
       freetype # libfreetype.so.6
       mesa # libGL.so.1
       libglvnd # tambien libGL.so.1
+      curlWithGnuTls # libcurl-gnutls.so.4
     ];
 
   runScript = ''
+    export LD_LIBRARY_PATH=${pkgs.curlWithGnuTls}/lib:$LD_LIBRARY_PATH
     ./squashfs-root/AppRun
   '';
 }
