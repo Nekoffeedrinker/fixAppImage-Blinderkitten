@@ -21,6 +21,9 @@ in
         libglvnd # tambien libGL.so.1
         curlWithGnuTls # libcurl-gnutls.so.4
         avahi # libavahi-common.so.3
+
+        # Usarlo sin extraer
+        appimage-run
       ]);
 
     extraOutputsToInstall = ["lib"];
@@ -28,7 +31,7 @@ in
     runScript = ''
       bash -c '
         export LD_LIBRARY_PATH=${curl}/lib:$LD_LIBRARY_PATH
-        exec ./squashfs-root/AppRun 2>/dev/null
-      '
+        exec appimage-run "$@"
+      ' -- "$@"
     '';
   }
