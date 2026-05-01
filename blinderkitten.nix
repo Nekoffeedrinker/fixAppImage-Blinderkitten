@@ -3,7 +3,7 @@
     url = "https://github.com/NixOS/nixpkgs/archive/23.11.tar.gz";
   }) {};
 
-  curl = oldPkgs.curlWithGnuTls;
+  curl = oldPkgs.curlWithGnuTls.out;
 in
   pkgs.buildFHSEnv {
     name = "blinderkitten";
