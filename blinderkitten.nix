@@ -17,7 +17,6 @@ pkgs.buildFHSEnv {
     ];
 
   runScript = ''
-    export LD_LIBRARY_PATH=${pkgs.curlWithGnuTls}/lib:$LD_LIBRARY_PATH
-    ./squashfs-root/AppRun
+    bash -c "export LD_LIBRARY_PATH=${pkgs.curlWithGnuTls}/lib:\$LD_LIBRARY_PATH; ./squashfs-root/AppRun"
   '';
 }
