@@ -12,6 +12,6 @@ pkgs.buildFHSEnv {
     ];
 
   runScript = ''
-    exec ./squashfs-root/AppRun
+    ./squashfs-root/AppRun
   '';
 }
