@@ -1,12 +1,16 @@
 {pkgs ? import <nixpkgs> {}}: let
-  curl = pkgs.curlWithGnuTls.out;
+  oldPkgs = import (fetchTarball {
+    url = "https://github.com/NixOS/nixpkgs/archive/23.11.tar.gz";
+  }) {};
+
+  curl = oldPkgs.curlWithGnuTls;
 in
   pkgs.buildFHSEnv {
     name = "blinderkitten";
 
     targetPkgs = pkgs:
-      with pkgs; [
-        curlWithGnuTls.out
+      [curl]
+      ++ (with pkgs; [
         glib
         zlib
         openssl
@@ -17,7 +21,7 @@ in
         libglvnd # tambien libGL.so.1
         curlWithGnuTls # libcurl-gnutls.so.4
         avahi # libavahi-common.so.3
-      ];
+      ]);
 
     runScript = ''
       bash -c "export LD_LIBRARY_PATH=${curl}/lib:\$LD_LIBRARY_PATH; ./squashfs-root/AppRun"
