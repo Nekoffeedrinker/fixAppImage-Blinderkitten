@@ -12,6 +12,7 @@ pkgs.buildFHSEnv {
     ];
 
   runScript = ''
-    ${pkgs.appimage-run}/bin/appimage-run "$@"
+    export LD_LIBRARY_PATH=${pkgs.curlWithGnuTls}/lib:$LD_LIBRARY_PATH
+    exec ${pkgs.appimage-run}/bin/appimage-run "$@"
   '';
 }
