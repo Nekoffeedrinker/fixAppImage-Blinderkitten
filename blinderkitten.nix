@@ -31,7 +31,12 @@ in
     runScript = ''
       bash -c '
         export LD_LIBRARY_PATH=${curl}/lib:$LD_LIBRARY_PATH
-        exec appimage-run "$@"
+        APPIMAGE="$1"
+        EXTRACT_DIR="$(dirname "$APPIMAGE")/squashfs-root"
+        if [ ! -d "$EXTRACT_DIR" ]; then
+          "$APPIMAGE" --appimage-extract
+        fi
+        exec "$EXTRACT_DIR/AppRun" 2>/dev/null
       ' -- "$@"
     '';
   }
