@@ -35,7 +35,7 @@ in
         APPIMAGE="$1"
         EXTRACT_DIR="$(dirname "$APPIMAGE")/squashfs-root"
         if [ ! -d "$EXTRACT_DIR" ]; then
-          unsquashfs -d "$EXTRACT_DIR" "$APPIMAGE"
+          unsquashfs -o 944632 -d "$EXTRACT_DIR" "$APPIMAGE"
         fi
         exec "$EXTRACT_DIR/AppRun" 2>/dev/null
       ' -- "$@"
