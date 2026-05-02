@@ -26,13 +26,11 @@ Luego buildear:
 
 ```bash
 nix-build blinderkitten.nix
-./result/bin/blinderkitten
 ```
 
 y correr el wrapper:
 
 ```bash
-nix-build blinderkitten.nix
 ./result/bin/blinderkitten
 ```
 
